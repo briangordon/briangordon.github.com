@@ -83,13 +83,13 @@ $$0 < -\lg rate_1 - \lg rate_2 - \ldots - \lg rate_n\\
 
 Now the problem is to find a negative cycle in the graph where the edge weights are the negative log of the exchange rates. The [Bellman-Ford algorithm](https://en.wikipedia.org/wiki/Bellman%E2%80%93Ford_algorithm) can  find negative cycles in a graph.
 
-The recurrence for Bellman-Ford defines $$B^{i}(X)$$ as the length of the shortest path from the starting node to $$X$$, using at most $$i$$ edges. This can be defined recursively:
+The recurrence for Bellman-Ford defines $$B^{i}(x)$$ as the length of the shortest path from the starting node to $$x$$, using at most $$i$$ edges. This can be defined recursively:
 
-$$B^0(X) = \infty \text{ for all } X\neq \text{start}\\
-B^0(\text{start}) = 0\\
-B^i(X) = \min\limits_{Y \in V} \left\{B^{i-1}(Y) + w_{YX}\right\}$$
+$$B^0(\text{start}) = 0\\
+B^0(x) = \infty \text{ for all } x\neq \text{start}\\
+B^i(x) = \min\limits_{y \in V} \left\{B^{i-1}(y) + w_{yx}\right\}$$
 
-Finding $$B^{\vert V \vert}(X)$$ for all nodes $$X$$ would take $$\Theta(\vert V \vert^3)$$ time if you build a table from the recurrence. Standard dynamic programming optimization techniques can bring this down. You can also use an adjacency list to only consider incident nodes in the $$\min$$, rather than all nodes. In the end, Bellman-Ford can be optimized down to $$\Theta(\vert V \vert \vert E \vert)$$:
+Finding $$B^{\vert V \vert}(x)$$ for all nodes $$x$$ would take $$\Theta(\vert V \vert^3)$$ time if you build a table from the recurrence. Standard dynamic programming optimization techniques can bring this down. You can also use an adjacency list to only consider incident nodes in the $$\min$$, rather than all nodes. In the end, Bellman-Ford can be optimized down to $$\Theta(\vert V \vert \vert E \vert)$$:
 
 ```
 repeat |V|-1 times:
