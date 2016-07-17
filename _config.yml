@@ -1,6 +1,2 @@
 safe: false
 permalink: /:year/:month/:title.html
-pygments: false
-markdown: kramdown
-kramdown:
-  use_coderay: false
