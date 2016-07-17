@@ -151,7 +151,7 @@ trait Function1[-T, +R] {
 }
 ```
 
-Since you can't have a single type parameter in both an argument position and a return position, it turns out to be impossible to safely implement a mutable collection with a variant type parameter. Indeed, the mutable collections in Scala all have invariant type parameters. The immutable collections, however, have covariant type parameters, because of the "one weird trick" that immutable collections have up their sleeve. Here's how Scala defines the immutable List interface:
+Since you can't have the same type parameter in both a covariant argument position and a contravariant return position, it turns out to be impossible to safely implement a mutable collection with a variant type parameter. Indeed, the mutable collections in Scala all have invariant type parameters. The immutable collections, however, have covariant type parameters, because of the "one weird trick" that immutable collections have up their sleeve. Here's how Scala defines the immutable List interface:
 
 ```scala
 package scala.collection.immutable
@@ -162,4 +162,4 @@ class List[+A] {
 }
 ```
 
-The list *produces* values of type `A` through its `head` method, so `A` is a contravariant type parameter. However, when it *consumes* values through its `prepend` method, it can accept anything which is a superclass of A. This would appear to violate our rule, but it doesn't– because `prepend` returns a *whole new collection* of the new, less specific type. Immutable collections will always return a new instance rather than modifying state within themselves, which is the key.
+The list *produces* values of type `A` through its `head` method, so `A` is a contravariant type parameter. However, when it *consumes* values through its `prepend` method, it can accept anything which is a superclass of A. This would appear to violate our rule, but it doesn't– because `prepend` returns a *whole new collection* of the new, less specific type. Immutable collections will always return a new instance rather than modifying state within themselves, which is the key to achieving both covariance and contravariance.
