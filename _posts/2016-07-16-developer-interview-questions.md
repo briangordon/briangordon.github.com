@@ -25,28 +25,27 @@ $$x = a_1^{b_1} \cdot a_2^{b_2} \cdot \ldots \cdot a_n^{b_n}$$
 
 We know that every divisor of $$x$$ can be written uniquely as:
 
-$$x = a_1^{c_1} \cdot a_2^{c_2} \cdot  \ldots \cdot a_n^{c_n} | \forall i: c_i \leq b_i$$
+$$a_1^{c_1} \cdot a_2^{c_2} \cdot  \ldots \cdot a_n^{c_n}\ |\ \forall i: c_i \leq b_i$$
 
-In other words, we have $$c_1 + 1$$ choices (0 through $$c_1$$) for the first factor's exponent, $$c_2 + 1$$ choices for the second factor's exponent, and so on. The total number of divisors is therefore:
+In other words, we have $$c_1 + 1$$ choices (zero through $$c_1$$) for the first factor's exponent, $$c_2 + 1$$ choices for the second factor's exponent, and so on. The total number of divisors is therefore:
 
-$$\displaystyle \prod_{i=1}^{n} c_i + 1$$
+$$\displaystyle \prod_{i=1}^{n} (c_i + 1)$$
 
-To see why only perfect squares have an odd number of divisors, think about a regular old number $$n$$ that's not a perfect square. You can pair all of its divisors $$d$$ with another divisor $$n / d$$. For example, if $$n = 12$$ then there are three pairs of divisors: $$\tuple{1, 12}$$, $$\tuple{2, 6}$$, and $$\tuple{3, 4}$$. Since all of the divisors are paired up, the number of divisors must be even. However, if $$n$$ is a perfect square, then one of the divisors can't be paired. The other divisors can be paired like before, but $$sqrt{n}$$ "pairs" with itself, making an odd number of distinct divisors.
+To see why only perfect squares have an odd number of divisors, think about a regular old number $$n$$ that's not a perfect square. You can pair all of its divisors $$d$$ with another divisor $$n / d$$. For example, if $$n = 12$$ then there are three pairs of divisors: $$\newcommand{\tuple}[1]{\ensuremath{\left \langle #1 \right \rangle }} \tuple{1, 12}$$, $$\tuple{2, 6}$$, and $$\tuple{3, 4}$$. Since all of the divisors are paired up, the number of divisors must be even. However, if $$n$$ is a perfect square, then one of the divisors can't be paired. The other divisors can be paired like before, but $$\sqrt{n}$$ "pairs" with itself, making an odd number of distinct divisors.
 
-***Prompt:** You're tasked with creating a machine for automatically making change. Your machine should take as an input the amount of change to make (e.g. 16.00) and the quantity remaining of each denomination of coin in the machine. It should output the number of each coin to dispense so that the fewest possible coins are dispensed. Your machine should work with any currency's coin denominations.*
+***Prompt:** You're tasked with creating a machine for automatically making change. Your machine should take as an input the amount of change to make (e.g. 16.00). It should output the number of each coin to dispense so that the fewest possible coins are dispensed. Your machine should work with any currency's coin denominations.*
 
 **Answer:** The change-making algorithm that cashiers in the United States follow is simple. You take as many quarters as you can without going over the desired amount, then you do the same for dimes, then nickels, then pennies. You consider each coin in descending order of value. However, this greedy algorithm doesn't work in general. If there's a 6-cent coin, 18 cents should be given as three 6-cent coins, not a dime, a 6-cent coin, and two pennies. 
 
 This is a classic dynamic programming problem. The first step in the dynamic programming approach is to find a recurrence. Let's define $$C(x)$$ to be the number of coins that it takes to make $$x$$ cents. We can define this recursively with a case for each coin. Say the denominations are 1, 4, and 5.  
 
 $$C(X)=min\begin{cases}
-0 for X=0\\
-C(X-1) + 1 if X\ge 1\\
-C(X-4) + 1 if X\ge 4\\
-C(X-5) + 1 if X\ge 5
+C(X-1)+1\ (\text{if}\ X\ge1)\\
+C(X-4)+1\ (\text{if}\ X\ge4)\\
+C(X-5)+1\ (\text{if}\ X\ge5)\\
 \end{cases}$$
 
-For example, if we have to make 55 cents, then we can either 1) make 54 cents and add a 1 cent coin, 2) make 50 cents and add a 4 cent coin, or 3) make 45 cents and add a 5 cent coin.
+For example, if we have to make 55 cents, then we can either 1) make 54 cents and add a 1 cent coin, 2) make 50 cents and add a 4 cent coin, or 3) make 45 cents and add a 5 cent coin. Our base case is that 0 cents can be made with 0 coins.
 
 However, writing this code as a recursive function would be a terrible idea. There's an enormous amount of overlap in the computation required to evaluate each case of the min. If we tried to make just 50 cents, we'd end up evaluating our function 818,598,723 times. 
 
@@ -64,7 +63,7 @@ The key insight is that this problem can be solved with the divide-and-conquer t
 
 You can accomplish this easily by modifying merge sort, another divide-and-conquer algorithm. Merge sort works by breaking the input list into halves, recursively sorting each half, and then merging them by repeatedly taking the first element from one or the other sorted halves, depending on which element is smaller. We can use this exact algorithm for counting inversions, except that the merge operation needs to additionally maintain an inversion counter which is incremented by the remaining size of the left half any time an element from the right half is merged.
 
-***Prompt:** Arbitrageurs make money by buying an asset and then immediately selling it in a different market to profit from a difference in price. One example of this is in the foreign exchange (forex) markets. Each currency pair (e.g. Euro / USD) has an *exchange rate*. If you can find a way to exchange your money between currency pairs such that you're able to return to your original currency with more money than you started with, you've found an arbitrage opportunity, which means risk-free profit! Given a list of currency pairs and their exchange rates, how would you determine whether there's an arbitrage opportunity?*
+***Prompt:** Arbitrageurs make money by buying an asset and then immediately selling it in a different market to profit from a difference in price. One example of this is in the foreign exchange (forex) markets. Each currency pair (e.g. Euro / USD) has an exchange rate. If you can find a way to exchange your money between currency pairs such that you're able to return to your original currency with more money than you started with, you've found an arbitrage opportunity, which means risk-free profit! Given a list of currency pairs and their exchange rates, how would you determine whether there's an arbitrage opportunity?*
 
 **Answer:** The structure of this problem is begging for it to be turned into a graph. You can represent currencies as nodes and traded currency pairs as edges, each with a weight corresponding to the exchange rate between its incident currencies. An arbitrage opportunity would then look like a cycle in the graph where the product of the edge weights is greater than one.
 
@@ -74,19 +73,19 @@ It's not obvious how to find such a cycle efficiently. We might like to take adv
 
 We can translate the product into a sum by taking the log of both sides:
 
-$$lg 1 < lg (rate_1 * rate_2 * \ldots * rate_n)
-0 < lg rate_1 + lg rate_2 + \ldots + lg rate_n$$
+$$\lg 1 < \lg (rate_1 * rate_2 * \ldots * rate_n)\\
+0 < \lg rate_1 + \lg rate_2 + \ldots + \lg rate_n$$
 
 So now we've formulated an equivalent problem: finding a positive cycle in the graph where the edge weights are the log of the exchange rates. An easy way to do this is to multiply each edge weight by -1:
 
-$$0 < -lg rate_1 - lg rate_2 - \ldots - lg rate_n
-0 > lg rate_1 + lg rate_2 + \ldots + lg rate_n$$
+$$0 < -\lg rate_1 - \lg rate_2 - \ldots - \lg rate_n\\
+0 > \lg rate_1 + \lg rate_2 + \ldots + \lg rate_n$$
 
 Now the problem is to find a negative cycle in the graph where the edge weights are the negative log of the exchange rates. The [Bellman-Ford algorithm](https://en.wikipedia.org/wiki/Bellman%E2%80%93Ford_algorithm) can  find negative cycles in a graph.
 
 The recurrence for Bellman-Ford defines $$B^{i}(X)$$ as the length of the shortest path from the starting node to $$X$$, using at most $$i$$ edges. This can be defined recursively:
 
-$$ B^0(X) = \inf for all X\neq start, B^0(start) = 0
+$$B^0(X) = \inf \text{for all} X\neq \text{start}, B^0(\text{start}) = 0\\
 B^i(X) = \operatornamewithlimits{min}_{Y \in V} (B^{i-1}(Y) + w_{YX})$$
 
 Finding $$B^{|V|}(X)$$ for all nodes $$X$$ would take $$\Theta(|V|^3)$$ time if you build a table from the recurrence. Standard dynamic programming optimization techniques can bring this down. You can also use an adjacency list to only consider incident nodes in the $$min$$, rather than all nodes. In the end, Bellman-Ford can be optimized down to $$\Theta(|V||E|)$$:
