@@ -113,13 +113,13 @@ Note: This is a bad interview question. Please don't ask it. It's so tricky in a
 
 ***Prompt:** How do you deal with deadlock?*
 
-**Answer:** A good practice for avoiding deadlock is to impose a total ordering on locks and always acquire them in the same order in different places in your code. When potential deadlock is unavoidable, you can keep track of a wait graph and abort one of your processes/transactions if there's a cycle (but be careful of livelock). Two-phase locking: acquire all of the locks you need *before* mutating the protected resoruce so that you can easily roll back by releasing the locks if there's a deadlock.
+**Answer:** A good practice for avoiding deadlock within an application is to impose a total ordering on locks and always acquire them in the same order in different places in your code. When potential deadlock is unavoidable, you can keep track of a wait graph and abort one of your processes/transactions if there's a cycle (but be careful of livelock). Two-phase locking: acquire all of the locks you need *before* mutating the protected resource so that you can easily roll back by releasing the locks if there's an issue acquiring all of the locks you need.
 
 ***Prompt:** What's the difference between [covariant and contravariant](https://en.wikipedia.org/wiki/Covariance_and_contravariance_%28computer_science%29) type parameters? When would you use each? What are your restrictions when designing a covariant collection class?*
 
 **Answer:** When you define a generic interface, covariant type parameters appear as the types of method arguments. They say "I don't care what type you give me, as long as it extends `T` so that I can treat it as a `T`." These are useful when you're defining *consumers*, like `Comparator`s. Contravariant type parameters, on the other hand, appear as method return types and say: "I don't care what type you expect, as long as it's a superclass of `T`, because I'm going to give you a `T`." These are useful when you're defining *producers*, like `Iterator`s. [Effective Java](https://www.amazon.com/Effective-Java-2nd-Joshua-Bloch/dp/0321356683/?tag=electronicfro-20) puts it succinctly: "producers extend, consumers super" or "PECS."
 
-A problem occurs when you want to *consume* an object of a variant type, and then turn around and *produce* an object of the same type. Languages like C# and Scala will actually prevent you from doing this at compile time, and with good reason. It turns out that allowing code like that to compile will break the type system. For example, in Java, this issue frequently confounds beginners:
+A problem occurs when you want to *consume* an object of a covariant type, and then turn around and *produce* an object of the same type contravariantly. Languages like C# and Scala will actually prevent you from doing this at compile time, and with good reason. It turns out that allowing code like that to compile will break the type system. For example, in Java, this issue frequently confounds beginners:
 
 ```java
 List<List<? extends Number>> a = null;
