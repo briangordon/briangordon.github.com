@@ -45,9 +45,9 @@ C(X-4)+1\ (\text{if}\ X\ge4)\\
 C(X-5)+1\ (\text{if}\ X\ge5)\\
 \end{cases}$$
 
-For example, if we have to make 55 cents, then we can either 1) make 54 cents and add a 1 cent coin, 2) make 50 cents and add a 4 cent coin, or 3) make 45 cents and add a 5 cent coin. Our base case is that 0 cents can be made with 0 coins.
+For example, if we have to make change for 55 cents, then we can either 1) make 54 cents and add a 1 cent coin, 2) make 51 cents and add a 4 cent coin, or 3) make 50 cents and add a 5 cent coin. Our base case is that 0 cents can be made with 0 coins.
 
-However, writing this code as a recursive function would be a terrible idea. There's an enormous amount of overlap in the computation required to evaluate each case of the min. If we tried to make just 50 cents, we'd end up evaluating our function 818,598,723 times. 
+However, writing this code as a recursive function would be a terrible idea. There's an enormous amount of overlap in the computation required to evaluate each case of the min. If we tried to make change for just 50 cents, we'd end up evaluating our function 818,598,723 times. 
 
 We could cache the result for each x after it's evaluated and check the cache before recursing (this is called memoization) but it would be better to write the algorithm iteratively. 
 
