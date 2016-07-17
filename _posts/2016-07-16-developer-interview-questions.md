@@ -25,7 +25,7 @@ $$x = a_1^{b_1} \cdot a_2^{b_2} \cdot \ldots \cdot a_n^{b_n}$$
 
 We know that every divisor of $$x$$ can be written uniquely as:
 
-$$a_1^{c_1} \cdot a_2^{c_2} \cdot  \ldots \cdot a_n^{c_n}\ |\ \forall i: c_i \leq b_i$$
+$$a_1^{c_1} \cdot a_2^{c_2} \cdot  \ldots \cdot a_n^{c_n}\ \vert\ \forall i: c_i \leq b_i$$
 
 In other words, we have $$c_1 + 1$$ choices (zero through $$c_1$$) for the first factor's exponent, $$c_2 + 1$$ choices for the second factor's exponent, and so on. The total number of divisors is therefore:
 
@@ -89,7 +89,7 @@ $$B^0(X) = \infty \text{ for all } X\neq \text{start}\\
 B^0(\text{start}) = 0\\
 B^i(X) = \min\limits_{Y \in V} \left\{B^{i-1}(Y) + w_{YX}\right\}$$
 
-Finding $$B^{\vert V \vert}(X)$$ for all nodes $$X$$ would take $$\Theta(\vert V \vert^3)$$ time if you build a table from the recurrence. Standard dynamic programming optimization techniques can bring this down. You can also use an adjacency list to only consider incident nodes in the $$min$$, rather than all nodes. In the end, Bellman-Ford can be optimized down to $$\Theta(\vert V \vert \vert E \vert)$$:
+Finding $$B^{\vert V \vert}(X)$$ for all nodes $$X$$ would take $$\Theta(\vert V \vert^3)$$ time if you build a table from the recurrence. Standard dynamic programming optimization techniques can bring this down. You can also use an adjacency list to only consider incident nodes in the $$\min$$, rather than all nodes. In the end, Bellman-Ford can be optimized down to $$\Theta(\vert V \vert \vert E \vert)$$:
 
 ```
 repeat |V|-1 times:
@@ -97,7 +97,7 @@ repeat |V|-1 times:
 		B[k] <- min(B[k], B[j] + w[j, k])
 ```
 
-Now that we have the shortest distance from our starting node (our starting currency) to every other node, we can check for negative cycles. If there's a negative cycle, then there's going to be no true shortest path to all nodes: for the nodes reachable from the negative cycle, you can go through the cycle as many times as you want to make the shortest distance as low as you want. Since we only iterated the B-F algorithm $$|V|-1$$ times, those very meandering shortest paths won't be accounted for. We can detect negative cycles by checking each edge and the "shortest" path lengths to its incident vertices:
+Now that we have the shortest distance from our starting node (our starting currency) to every other node, we can check for negative cycles. If there's a negative cycle, then there's going to be no true shortest path to all nodes: for the nodes reachable from the negative cycle, you can go through the cycle as many times as you want to make the shortest distance as low as you want. Since we only iterated the B-F algorithm $$\vert V \vert-1$$ times, those very meandering shortest paths won't be accounted for. We can detect negative cycles by checking each edge and the "shortest" path lengths to its incident vertices:
 
 ```
 for each edge (j, k)
