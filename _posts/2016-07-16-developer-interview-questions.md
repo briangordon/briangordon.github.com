@@ -85,10 +85,10 @@ Now the problem is to find a negative cycle in the graph where the edge weights 
 
 The recurrence for Bellman-Ford defines $$B^{i}(X)$$ as the length of the shortest path from the starting node to $$X$$, using at most $$i$$ edges. This can be defined recursively:
 
-$$B^0(X) = \inf \text{for all} X\neq \text{start}, B^0(\text{start}) = 0\\
-B^i(X) = \min\limits_{Y \in V} (B^{i-1}(Y) + w_{YX})$$
+$$B^0(X) = \infty \text{ for all } X\neq \text{start}, B^0(\text{start}) = 0\\
+B^i(X) = \min\limits_{Y \in V} \left\{B^{i-1}(Y) + w_{YX}\right\}$$
 
-Finding $$B^{|V|}(X)$$ for all nodes $$X$$ would take $$\Theta(|V|^3)$$ time if you build a table from the recurrence. Standard dynamic programming optimization techniques can bring this down. You can also use an adjacency list to only consider incident nodes in the $$min$$, rather than all nodes. In the end, Bellman-Ford can be optimized down to $$\Theta(|V||E|)$$:
+Finding $$B^{\vertV\vert}(X)$$ for all nodes $$X$$ would take $$\Theta(|V|^3)$$ time if you build a table from the recurrence. Standard dynamic programming optimization techniques can bring this down. You can also use an adjacency list to only consider incident nodes in the $$min$$, rather than all nodes. In the end, Bellman-Ford can be optimized down to $$\Theta(|V||E|)$$:
 
 ```
 repeat |V|-1 times:
