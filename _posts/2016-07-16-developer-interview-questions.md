@@ -9,7 +9,7 @@ The following is my attempt to write down some of the stuff that I've read and t
 
 ***Prompt:** Say you're working for a shipping operation that moves bulk commodities across the ocean. You can select from an exchange which goods you want to accept for delivery on a given ship. Each lot on the exchange is for a certain amount of money to ship a certain number of cubic feet of a given good. How would you decide what lots to carry on a ship with a known displacement and volume capacity?*
 
-**Answer:** If you only had to consider volume capacity then you might be tempted to simply take the lots which yield the most money per cubic foot, in order, until your ship is full. Even in this simplified case, that wouldn't be an optimal solution. You might greedily take a single lot which is slightly more profitable than the others per cubic foot, but leaves 4% of your ship empty, which you cannot fill since the other lots are for at least 5% of your ship. It could be more profitable overall to accept smaller lots so that your ship can be packed more completely. This sounds like a bin-packing problem, so we know at this point that our algorithm is probably going to be exponential in the worst case.
+**Answer:** If you only had to consider volume capacity then you might be tempted to take the lots which yield the most money per cubic foot, in order, until your ship is full. Even in this simplified case, that wouldn't be an optimal solution. You might greedily take a single lot which is slightly more profitable than the others per cubic foot, but leaves 4% of your ship empty, which you cannot fill since the other lots are for at least 5% of your ship. It could be more profitable overall to accept smaller lots so that your ship can be packed more completely. This sounds like a bin-packing problem, so we know at this point that our algorithm is probably going to be exponential in the worst case.
 
 The prompt mentions displacement, which adds another constraint to our choice of lots. It might be very profitable to ship gold bullion, but if you filled your entire ship with gold then it would sink! This is an elementary integer programming problem. Your variables are booleans signifying whether or not to accept each lot on the exchange. Your objective function is the total money made by shipping the lots that you accept. You are constrained by the total weight and volume of those lots. And once you've found the optimal shipment you should make sure that it's actually profitable given your costs!
 
@@ -25,7 +25,7 @@ $$x = a_1^{b_1} \cdot a_2^{b_2} \cdot \ldots \cdot a_n^{b_n}$$
 
 We know that every divisor of $$x$$ can be written uniquely as:
 
-$$a_1^{c_1} \cdot a_2^{c_2} \cdot  \ldots \cdot a_n^{c_n}\ \vert\ \forall i: c_i \leq b_i$$
+$$a_1^{c_1} \cdot a_2^{c_2} \cdot  \ldots \cdot a_n^{c_n}\ \vert\ \forall i: 0 \leq c_i \leq b_i$$
 
 In other words, we have $$c_1 + 1$$ choices (zero through $$c_1$$) for the first factor's exponent, $$c_2 + 1$$ choices for the second factor's exponent, and so on. The total number of divisors is therefore:
 
