@@ -31,7 +31,7 @@ In other words, we have $$c_1 + 1$$ choices (zero through $$c_1$$) for the first
 
 $$\displaystyle \prod_{i=1}^{n} (c_i + 1)$$
 
-To see why only perfect squares have an odd number of divisors, think about a regular old number $$n$$ that's not a perfect square. You can pair all of its divisors $$d$$ with another divisor $$n / d$$. For example, if $$n = 12$$ then there are three pairs of divisors: $$\newcommand{\tuple}[1]{\ensuremath{\left \langle #1 \right \rangle }} \tuple{1, 12}$$, $$\tuple{2, 6}$$, and $$\tuple{3, 4}$$. Since all of the divisors are paired up, the number of divisors must be even. However, if $$n$$ is a perfect square, then one of the divisors can't be paired. The other divisors can be paired like before, but $$\sqrt{n}$$ "pairs" with itself, making an odd number of distinct divisors.
+To see why only perfect squares have an odd number of divisors, think about a regular old number $$n$$ that's not a perfect square. You can pair all of its divisors $$d$$ with another divisor $$n / d$$. For example, if $$n = 12$$ then there are three pairs of divisors: $$\newcommand{\tuple}[1]{\left \langle #1 \right \rangle} \tuple{1, 12}$$, $$\tuple{2, 6}$$, and $$\tuple{3, 4}$$. Since all of the divisors are paired up, the number of divisors must be even. However, if $$n$$ is a perfect square, then one of the divisors can't be paired. The other divisors can be paired like before, but $$\sqrt{n}$$ "pairs" with itself, making an odd number of distinct divisors.
 
 ***Prompt:** You're tasked with creating a machine for automatically making change. Your machine should take as an input the amount of change to make (e.g. 16.00). It should output the number of each coin to dispense so that the fewest possible coins are dispensed. Your machine should work with any currency's coin denominations.*
 
@@ -85,10 +85,11 @@ Now the problem is to find a negative cycle in the graph where the edge weights 
 
 The recurrence for Bellman-Ford defines $$B^{i}(X)$$ as the length of the shortest path from the starting node to $$X$$, using at most $$i$$ edges. This can be defined recursively:
 
-$$B^0(X) = \infty \text{ for all } X\neq \text{start}, B^0(\text{start}) = 0\\
+$$B^0(X) = \infty \text{ for all } X\neq \text{start}\\
+B^0(\text{start}) = 0\\
 B^i(X) = \min\limits_{Y \in V} \left\{B^{i-1}(Y) + w_{YX}\right\}$$
 
-Finding $$B^{\vertV\vert}(X)$$ for all nodes $$X$$ would take $$\Theta(|V|^3)$$ time if you build a table from the recurrence. Standard dynamic programming optimization techniques can bring this down. You can also use an adjacency list to only consider incident nodes in the $$min$$, rather than all nodes. In the end, Bellman-Ford can be optimized down to $$\Theta(|V||E|)$$:
+Finding $$B^{\vert V \vert}(X)$$ for all nodes $$X$$ would take $$\Theta(\vert V \vert^3)$$ time if you build a table from the recurrence. Standard dynamic programming optimization techniques can bring this down. You can also use an adjacency list to only consider incident nodes in the $$min$$, rather than all nodes. In the end, Bellman-Ford can be optimized down to $$\Theta(\vert V \vert \vert E \vert)$$:
 
 ```
 repeat |V|-1 times:
