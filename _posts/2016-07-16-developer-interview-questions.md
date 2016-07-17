@@ -76,7 +76,7 @@ We can translate the product into a sum by taking the log of both sides:
 $$\lg 1 < \lg (rate_1 * rate_2 * \ldots * rate_n)\\
 0 < \lg rate_1 + \lg rate_2 + \ldots + \lg rate_n$$
 
-So now we've formulated an equivalent problem: finding a positive cycle in the graph where the edge weights are the log of the exchange rates. An easy way to do this is to multiply each edge weight by -1:
+So now we've formulated an equivalent problem: finding a positive cycle in the graph where the edge weights are the log of the exchange rates. However, positive cycles aren't as easy to find as negative cycles. Multiply both sides by $$-1$$:
 
 $$0 < -\lg rate_1 - \lg rate_2 - \ldots - \lg rate_n\\
 0 > \lg rate_1 + \lg rate_2 + \ldots + \lg rate_n$$
