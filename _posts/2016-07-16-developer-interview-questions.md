@@ -27,9 +27,9 @@ We know that every divisor of $$x$$ can be written uniquely as:
 
 $$a_1^{c_1} \cdot a_2^{c_2} \cdot  \ldots \cdot a_n^{c_n}\ \vert\ \forall i: 0 \leq c_i \leq b_i$$
 
-In other words, we have $$c_1 + 1$$ choices (zero through $$c_1$$) for the first factor's exponent, $$c_2 + 1$$ choices for the second factor's exponent, and so on. The total number of divisors is therefore:
+In other words, we have $$b_1 + 1$$ choices (zero through $$b_1$$) for the first factor's exponent, $$b_2 + 1$$ choices for the second factor's exponent, and so on. The total number of divisors is therefore:
 
-$$\displaystyle \prod_{i=1}^{n} (c_i + 1)$$
+$$\displaystyle \prod_{i=1}^{n} (b_i + 1)$$
 
 To see why only perfect squares have an odd number of divisors, think about a regular old number $$n$$ that's not a perfect square. You can pair all of its divisors $$d$$ with another divisor $$n / d$$. For example, if $$n = 12$$ then there are three pairs of divisors: $$\newcommand{\tuple}[1]{\left \langle #1 \right \rangle} \tuple{1, 12}$$, $$\tuple{2, 6}$$, and $$\tuple{3, 4}$$. Since all of the divisors are paired up, the number of divisors must be even. However, if $$n$$ is a perfect square, then one of the divisors can't be paired. The other divisors can be paired like before, but $$\sqrt{n}$$ "pairs" with itself, making an odd number of distinct divisors.
 
