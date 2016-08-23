@@ -78,8 +78,7 @@ $$\lg 1 < \lg (rate_1 * rate_2 * \ldots * rate_n)\\
 
 So now we've formulated an equivalent problem: finding a positive cycle in the graph where the edge weights are the log of the exchange rates. However, positive cycles aren't as easy to find as negative cycles. Multiply both sides by $$-1$$:
 
-$$0 < -\lg rate_1 - \lg rate_2 - \ldots - \lg rate_n\\
-0 > \lg rate_1 + \lg rate_2 + \ldots + \lg rate_n$$
+$$0 > -\lg rate_1 - \lg rate_2 - \ldots - \lg rate_n$$
 
 Now the problem is to find a negative cycle in the graph where the edge weights are the negative log of the exchange rates. The [Bellman-Ford algorithm](https://en.wikipedia.org/wiki/Bellman%E2%80%93Ford_algorithm) can  find negative cycles in a graph.
 
