@@ -25,7 +25,7 @@ $$x = a_1^{b_1} \cdot a_2^{b_2} \cdot \ldots \cdot a_n^{b_n}$$
 
 We know that every divisor of $$x$$ can be written uniquely as:
 
-$$a_1^{c_1} \cdot a_2^{c_2} \cdot  \ldots \cdot a_n^{c_n}\ \vert\ \forall i: 0 \leq c_i \leq b_i$$
+$$a_1^{c_1} \cdot a_2^{c_2} \cdot  \ldots \cdot a_n^{c_n}\ \vert\ 0 \leq c_i \leq b_i$$
 
 In other words, we have $$b_1 + 1$$ choices (zero through $$b_1$$) for the first factor's exponent, $$b_2 + 1$$ choices for the second factor's exponent, and so on. The total number of divisors is therefore:
 
