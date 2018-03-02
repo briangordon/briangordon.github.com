@@ -5,7 +5,7 @@ tags: programming math
 published: true
 ---
 
-There's [an old comment](https://news.ycombinator.com/item?id=571090) on HN that annoys me. In it, a developer whines bitterly and eloquently about his experience being stumped by a common interview question: "write an algorithm for computing the square root of a number." 
+There's [an old HN comment](https://news.ycombinator.com/item?id=571090) in which a developer whines bitterly and eloquently about his experience being stumped by a common interview question: "write an algorithm for computing the square root of a number." 
 
 > I tried a couple more times to answer this question that is completely unrelated to the job I'm interviewing for. Finally, I get so fed up with this moron that my internal ticker clicks over and I realize, "Even if I get this job, I'm going to be dealing with these kinds of nazel-gazing engineers every single day. Not an environment I want to be in."
 
