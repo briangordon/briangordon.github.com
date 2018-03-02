@@ -9,7 +9,7 @@ There's [an old comment](https://news.ycombinator.com/item?id=571090) on HN that
 
 > I tried a couple more times to answer this question that is completely unrelated to the job I'm interviewing for. Finally, I get so fed up with this moron that my internal ticker clicks over and I realize, "Even if I get this job, I'm going to be dealing with these kinds of nazel-gazing engineers every single day. Not an environment I want to be in."
 
-![OK](https://imgur.com/gallery/seh6p)
+![OK](https://i.imgur.com/seh6p.gif)
 
 The most obvious solution is binary search, but that's not very interesting. How else might we solve the problem of calculating $$\sqrt{a}$$? Let's first introduce the concept of a **fixed point**. A fixed point is a value which is unchanged by the function - that is, $$f(p) = p$$. For example, a fixed point of the sine function is 0 because $$\sin(0)=0$$. A fixed point of the cosine function is located around 0.739085133 because $$\cos(0.739085133)\approx0.739085133$$. In fact, if we plot the cosine function on top of $$f(p) = p$$ then we can see that they intersect at exactly that point:
 
