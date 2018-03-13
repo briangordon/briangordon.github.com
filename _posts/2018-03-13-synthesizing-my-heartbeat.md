@@ -7,7 +7,10 @@ published: false
 
 I recently got my hands on a nice, hospital-grade pulse oximeter for analyzing my breathing patterns while I sleep. You can view the data one sample at a time on the device, but what's really interesting is that you can transfer the data to your computer over USB. Let's see what we can do with it!
 
-- putty screenshots
+After installing a USB->COM bridge driver and tweaking connection settings I was able to establish a connection to the device with PuTTY and download all of the data stored on the device.
+
+![A screenshot of PuTTY streaming the data](/images/putty.png)]
+
 - create a sound clip of a heartbeat in realtime
 - histogram of spo2 and plot % time spent under each point
 - frequency analysis of spo2 dip events
