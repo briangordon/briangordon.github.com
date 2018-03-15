@@ -27,6 +27,10 @@ TIME                 %SPO2   BPM     PA   Status
 
 The **%SPO2** column indicates my peripheral capillary oxygen saturation, i.e. the saturation of the blood in my finger under the sensor, on a scale from 0 to 100. The **BPM** column indicates my heart rate in beats per minute. The **PA** column indicates my pulse amplitude, i.e. the strength of my heartbeat, which is affected by various factors like arterial wall elasticity and respiration. The **Status** column indicates status events like the sensor becoming disconnected. A motion event in which my body movement disrupted the sensor is recorded at 10:00:28 in the above log.
 
+Let's fire up MATLAB and import a few hours of data. If you haven't used it before, MATLAB has a nice data import tool which can generate code to import your file with options that you select graphically:
+
+![A screenshot of MATLAB's data importer](/images/matlab-importer.png)
+
 - create a sound clip of a heartbeat in realtime (with pulse amplitude as volume?)
 - histogram of spo2 and plot % time spent under each point
 - frequency analysis of spo2 dip events
