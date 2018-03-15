@@ -31,7 +31,7 @@ Let's fire up MATLAB and import a few hours of data. If you haven't used it befo
 
 ![A screenshot of MATLAB's data importer](/images/matlab-importer.png)
 
-Right away let's get a visualization of the distribution of my SpO2 data by plotting the data points against the percentiles for the data points. Mostly I'm in a healthy range but there is a worrying quantity of data points in a dangerous range:
+Right away let's get a visualization of the distribution of my SpO2 data by plotting the data points on the X axis against the percentile on the Y axis. Mostly I'm in a healthy range but there is a worrying quantity of data points in a dangerous range (about 90 and below):
 
 ![Distribution of Spo2](/images/matlab-spo2-distribution.png)
 
