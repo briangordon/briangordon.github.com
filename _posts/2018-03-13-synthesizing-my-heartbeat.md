@@ -31,6 +31,10 @@ Let's fire up MATLAB and import a few hours of data. If you haven't used it befo
 
 ![A screenshot of MATLAB's data importer](/images/matlab-importer.png)
 
+Right away let's get a visualization of the distribution of my SpO2 data by plotting the data points against the percentiles for the data points. Mostly I'm in a healthy range but there is a worrying quantity of data points in a dangerous range:
+
+![Distribution of Spo2](/images/matlab-spo2-distribution.png)
+
 - create a sound clip of a heartbeat in realtime (with pulse amplitude as volume?)
 - histogram of spo2 and plot % time spent under each point
 - frequency analysis of spo2 dip events
