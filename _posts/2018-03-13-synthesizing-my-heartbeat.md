@@ -7,8 +7,6 @@ published: false
 
 I recently got my hands on a hospital-grade [pulse oximeter](https://en.wikipedia.org/wiki/Pulse_oximetry) for analyzing my breathing patterns while I sleep. One can view the data a single sample at a time on the device's display, but what's really interesting is that one can transfer the data to a computer over USB for analysis. Let's see what we can do with it!
 
-![Photo of my SpO2 monitor](/images/spo2-monitor-photo.jpg)
-
 After installing a USB->COM bridge driver I was able to establish a serial connection to the device with PuTTY and download all of the data stored in its memory.
 
 ![A screenshot of PuTTY streaming the data](/images/putty.png)
