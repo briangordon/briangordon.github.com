@@ -31,11 +31,16 @@ Let's fire up MATLAB and import a few hours of data. If you haven't used it befo
 
 ![A screenshot of MATLAB's data importer](/images/matlab-importer.png)
 
-Right away let's get a visualization of the distribution of my SpO2 data by plotting the data points against the percentile. Mostly I'm in a healthy range but there is a worrying quantity of data points in a dangerous range (about 90 and below):
+Right away let's get a visualization of the distribution of my SpO2 data by plotting the data points against the percentile:
+
+```
+import_mar13_data
+[spo2percentil,x] = ecdf(oximeterdatamar13.SPO2);
+stairs(x, 100*spo2percentil)
+```
 
 ![Distribution of Spo2](/images/matlab-spo2-distribution.png)
 
 - create a sound clip of a heartbeat in realtime (with pulse amplitude as volume?)
-- histogram of spo2 and plot % time spent under each point
 - frequency analysis of spo2 dip events
 - synthesize a speeded-up sound clip in the frequency-time domain where the frequency equals the spo2 at that time
