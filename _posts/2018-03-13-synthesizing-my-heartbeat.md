@@ -41,6 +41,6 @@ stairs(x, 100*spo2percentil)
 
 ![Distribution of Spo2](/images/matlab-spo2-distribution.png)
 
-- create a sound clip of a heartbeat in realtime (with pulse amplitude as volume?)
+- create a sound clip of a heartbeat in realtime (with pulse amplitude as volume?). interpolate data points (10x?) in case a heartbeat starts halfway between data points
 - frequency analysis of spo2 dip events
 - synthesize a speeded-up sound clip in the frequency-time domain where the frequency equals the spo2 at that time
