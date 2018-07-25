@@ -25,6 +25,6 @@ Given adequate equity, a bank can create new money as it pleases, and the centra
 
 
 
-cover prime rate, how (and why) the fed controls the federal funds rate (buying/selling t-bills at market rate in exchange for reserves), floor on federal funds rate in ultra-low-interest-rate environments by paying interest on required and excess reserves
+cover prime rate, how (and why) the fed controls the federal funds rate (buying/selling t-bills at market rate in exchange for reserves - note that this doesn't banks' ability to make loans because banks DO NOT LOAN RESERVES), floor on federal funds rate in ultra-low-interest-rate environments by paying interest on required and excess reserves
 
 also cover creation of money from QE?
