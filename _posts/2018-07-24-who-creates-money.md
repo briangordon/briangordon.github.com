@@ -2,7 +2,7 @@
 layout: post
 title: Who creates money?
 tags: economics investing
-published: false
+published: true
 ---
 
 Inflation has been around since antiquity. The Roman Empire was particularly known for debasing its currency (by minting their coins with [increasingly impure](https://upload.wikimedia.org/wikipedia/commons/8/81/Fineness_of_early_Roman_Imperial_silver_coins.png) precious metals) to cover state expenditures, especially in times of war. The increasing nominal money supply and pressure from imports paid for with silver resulted in steady inflation of prices and wages.
