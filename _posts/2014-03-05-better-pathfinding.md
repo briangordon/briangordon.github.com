@@ -22,7 +22,7 @@ I absolutely agree. The main lesson that you should take away from [the crypto c
 
 So best practices were apparently not followed at Mt. Gox. In fact, later [it was alleged](http://www.wired.com/wiredenterprise/2014/03/bitcoin-exchange/) that developers at Mt. Gox would push changes directly to production, and didn't even use version control for the site's source code.
 
-[Another of his blog posts](https://web.archive.org/web/20140228080739/http://blog.magicaltux.net/2008/11/30/eve-online-pathfinder) is about a tool which he wrote - in PHP of course - to compute routes between star systems in the MMORPG [EVE Online](https://en.wikipedia.org/wiki/Eve_Online). In EVE, solar systems are connected to each other with portals called Stargates. The result is [a big graph](http://evemaps.dotlan.net/). Savvy players will try to take the shortest possible path to get from point A to point B by using a shortest-path algorithm to automate navigation.
+[Another of his blog posts](https://web.archive.org/web/20101125085812/http://blog.magicaltux.net/2008/11/30/eve-online-pathfinder/) is about a tool which he wrote - in PHP of course - to compute routes between star systems in the MMORPG [EVE Online](https://en.wikipedia.org/wiki/Eve_Online). In EVE, solar systems are connected to each other with portals called Stargates. The result is [a big graph](http://evemaps.dotlan.net/). Savvy players will try to take the shortest possible path to get from point A to point B by using a shortest-path algorithm to automate navigation.
 
 ![Systems map in EVE Online](/images/eve-systems.png)
 
