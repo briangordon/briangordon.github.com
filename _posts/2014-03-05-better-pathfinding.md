@@ -38,7 +38,7 @@ Based on my reading of his code, this appears to be his algorithm:
 
 This continues for 256 steps, by which point MagicalTux hopes all systems have been informed of the shortest path to all other systems. Judging by a cusory search of the EVE forums, [this appears to be a valid assumption](http://oldforums.eveonline.com/?a=topic&threadID=1363890). 
 
-This algorithm is essentially the [Bellman-Ford algorithm](https://en.wikipedia.org/wiki/Bellman%E2%80%93Ford_algorithm) run once for each system in the universe. Although this solution is asymptotically optimal, in real life it will perform poorly compared to a real all-pairs shortest path algorithm. I thought it would be interesting to see how badly I could beat his code's performance. MagicalTux claims that it takes **about 3 hours** to construct the index using his PHP code. I'm going to see how much faster I can do it, by doing these things differently:
+Although his solution seems asymptotically optimal (maybe off by a factor of the number of edges?), in real life it will perform poorly compared to a real all-pairs shortest path algorithm. I thought it would be interesting to see how badly I could beat his code's performance. MagicalTux claims that it takes **about 3 hours** to construct the index using his PHP code. I'm going to see how much faster I can do it, by doing these things differently:
 
 * Use C++ instead of PHP.
 * Don't use file I/O as a working data structure.
