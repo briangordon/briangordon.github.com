@@ -25,7 +25,7 @@ Given adequate capitalization, a commercial bank can create new money as it plea
 
 In order to influence commercial lending rates, the Federal Reserve manipulates the *federal funds rate*, the average interest rate that banks charge each other for overnight loans to cover their reserve requirements. 
 
-![Fed funds rate graph](images/fredgraph.png)
+![Fed funds rate graph](/images/fredgraph.png)
 
 This rate perhaps doesn't seem *prima facie* particularly significant, but the short maturity of the loan (overnight) and extreme creditworthiness of the borrowers (banks) makes the federal funds rate an essential indicator for the theoretical interest rate of an asset with zero financial risk. This *risk free interest rate* is used throughout the financial system as a base for determining rates on all kinds of debt instruments. For example, the *prime rate* used for home loans, student loans, credit cards, and other lines of credit runs about 3% above the federal funds rate. The Fed has the most direct impact on short-term, low-risk interest rates because reserve lending competes most directly with short-term, low-risk debt. As you go farther out on the yield curve (or look at higher-yield debt), the Fed's impact is more muted. Would-be arbitrageurs will tend to narrow the spread between the fed funds rate and other forms of debt, but they have to assume some risk to do so, so there will be a premium involved which depends on the macroeconomic outlook of the market. Thus, in practice the Fed has a difficult time controlling long-term rates given the tools they have.
 
