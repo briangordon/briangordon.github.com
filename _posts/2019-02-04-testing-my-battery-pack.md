@@ -2,6 +2,7 @@
 layout: post
 title: Testing my battery pack
 tags: electronics
+published: false
 ---
 
 I've been working on some electronics stuff lately and thought I'd record the testing of my custom lithium ion battery pack. Things... do not end well.
