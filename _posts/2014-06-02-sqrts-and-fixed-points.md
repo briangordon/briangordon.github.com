@@ -73,8 +73,6 @@ Remember that before we said $$\sqrt{a}$$ is a fixed point of the function $$f(x
 
 Now it would be very simple to wrap the Babylonian method in a loop and perform a couple steps of fixed point iteration to get a decent sqrt(a). But since we're finding a fixed point, this seems like a nice time to break out something called a *fixed point combinator*. The best-known fixed point combinator is the *Y combinator*. You've probably heard of it due to [the eponymous startup incubator](https://en.wikipedia.org/wiki/Y_Combinator_(company)) founded by Lisp greybeard Paul Graham, of the famous [Paul Graham essays](http://paulgraham.com/articles.html).
 
-![YCombinator logo](https://old.ycombinator.com/images/yc500.gif)
-
 This is the [lambda calculus](https://en.wikipedia.org/wiki/Lambda_calculus) definition of the Y combinator, due to Haskell Curry:
 
 $$ \lambda f.\!(\lambda x.f\ (x\ x))\ (\lambda x.f\ (x\ x)) $$
