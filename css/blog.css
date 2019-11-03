@@ -121,15 +121,10 @@ object {
 }
 
 /* Separator between posts on the index page */
-#separator {
+.post-separator {
 	border-top: solid #ccc;
 	margin-top: 2em;
 	margin-bottom: 2em;
-}
-
-/* Separator between topics on the index page */
-#separator-blank {
-	margin-top: 2em;
 }
 
 /* Text that appears in the site about link */
