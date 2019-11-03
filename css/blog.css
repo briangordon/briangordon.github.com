@@ -171,7 +171,7 @@ object {
 }
 
 #navlist-wrapper {
-	width: 350px;
+	width: 400px;
 	margin-left: auto;
 	margin-right: 0px;
 	padding-right: 10px;
@@ -179,7 +179,7 @@ object {
 }
 
 #site-title {
-	width: 400px;
+	width: 350px;
 	float: left;
 	margin-left: auto;
 	margin-right: auto;
