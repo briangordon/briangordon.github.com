@@ -23,12 +23,12 @@ title: Brian Gordon
     {{ post.content }}
   {% endfor %}
 
-  <div class="pagenav">
+  <div id="page-nav">
   {% if paginator.previous_page %}
-    <a href="{{ paginator.previous_page_path }}">Newer</a>
+    <div id="page-nav-left"><a href="{{ paginator.previous_page_path }}">Newer</a></div>
   {% endif %}
   {% if paginator.next_page %}
-    <a href="{{ paginator.next_page_path }}">Older</a>
+    <div id="page-nav-right"><a href="{{ paginator.next_page_path }}">Older</a></div>
   {% endif %}
   </div>
 </div>

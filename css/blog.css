@@ -171,7 +171,7 @@ object {
 }
 
 #navlist-wrapper {
-	width: 300px;
+	width: 450px;
 	margin-left: auto;
 	margin-right: 0px;
 	padding-right: 10px;
@@ -216,6 +216,18 @@ object {
 
 #footer #foot-right a:hover {
 	background-color: transparent;
+}
+
+#page-nav {
+	font-weight: blold;
+}
+
+#page-nav #page-nav-left {
+	float:left;
+}
+
+#page-nav #page-nav-right {
+	float: right;
 }
 
 /* Used for post dates and title blurb */
