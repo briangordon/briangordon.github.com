@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Developer interview questions
-tags: programming math
+tags: [programming, math]
 published: true
 ---
 
