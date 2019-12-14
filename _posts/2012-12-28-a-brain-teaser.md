@@ -1,7 +1,7 @@
 ---
 layout: post
 title: A brain teaser
-tags: riddles
+tags: puzzle
 ---
 
 These two brain teasers posted on [/r/math](http://reddit.com/r/math/) impressed me greatly, so I decided to present them here.
