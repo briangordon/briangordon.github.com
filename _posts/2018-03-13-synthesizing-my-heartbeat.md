@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Synthesizing my heartbeat
-tags: health programming math
+tags: [health, programming, math]
 published: false
 ---
 
