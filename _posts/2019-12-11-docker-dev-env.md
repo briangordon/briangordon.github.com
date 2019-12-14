@@ -129,13 +129,14 @@ ufw app update nxserver
 ufw allow from 192.168.0.0/16 to 0.0.0.0/0 app nxserver
 ufw limit log proto tcp from 192.168.0.0/16 to 0.0.0.0/0 port 2222
 ```
-
+<br />
 ### Operation
 
 In order to remote into your server, download and install the freeware [NoMachine Enterprise Client](https://www.nomachine.com/product&p=NoMachine%20Enterprise%20Client). Create a new connection, selecting the NX protocol (the freeware version of the server software doesn't support SSH) and entering the relevant hostname or IP address. You can select "Use UDP communication for multimedia data."
 
 The Dockerfile copies your server's `.ssh/authorized_keys` into `~/.nx/config/authorized.crt` but I was unable to get key-based authentication to work (connections fail if `EnableNXClientAuthentication` is `1` and [this guy's fix](https://forums.nomachine.com/topic/nxclientauthentication-fails) doesn't work for me) so password-based authentication is left enabled. Use a strong password if you expose this to the internet!
 
+<br />
 ### Docker tips
 
 This section is a collection of pointers for Docker beginners to help with common tasks that you might want to perform with your container.
