@@ -39,7 +39,7 @@ RUN useradd --create-home --user-group --groups wheel --shell /bin/bash $usernam
 RUN systemctl enable sshd
 RUN sed -i 's/UsePAM yes/UsePAM no/' /etc/ssh/sshd_config
 RUN sed -i 's/#PasswordAuthentication yes/PasswordAuthentication no/' /etc/ssh/sshd_config
-COPY --chown=brian:brian authorized_keys /home/brian/.ssh/authorized_keys
+COPY --chown=$username:$username authorized_keys /home/brian/.ssh/authorized_keys
 
 # Set up key-based auth for NX, though as we'll see it doesn't actually work. You can remove this if you don't have authorized_keys set up.
 RUN mkdir -p /home/brian/.nx/config
