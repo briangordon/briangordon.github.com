@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Square roots and fixed points
-tags: programming math
+tags: [programming, math]
 published: true
 ---
 
