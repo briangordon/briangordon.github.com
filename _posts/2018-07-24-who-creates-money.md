@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Who creates money?
-tags: economics investing
+tags: [economics, investing]
 published: true
 ---
 
