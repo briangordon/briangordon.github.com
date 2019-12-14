@@ -35,13 +35,13 @@ RUN pacman -S --noconfirm --needed lxde gvfs pulseaudio --ignore lxdm
 # Create our user *before* mounting the home directory as a volume so that it won't be owned by root.
 RUN useradd --create-home --user-group --groups wheel --shell /bin/bash $username
 
-# Enable OpenSSH daemon with password-based authentication disabled. You can remove some of this if you don't use have authorized_keys set up.
+# Enable OpenSSH daemon with password-based authentication disabled. You can remove some of this if you don't have authorized_keys set up.
 RUN systemctl enable sshd
 RUN sed -i 's/UsePAM yes/UsePAM no/' /etc/ssh/sshd_config
 RUN sed -i 's/#PasswordAuthentication yes/PasswordAuthentication no/' /etc/ssh/sshd_config
 COPY --chown=brian:brian authorized_keys /home/brian/.ssh/authorized_keys
 
-# Set up key-based auth for NX, though as we'll see it doesn't actually work. You can remove this if you don't use have authorized_keys set up.
+# Set up key-based auth for NX, though as we'll see it doesn't actually work. You can remove this if you don't have authorized_keys set up.
 RUN mkdir -p /home/brian/.nx/config
 RUN cp /home/brian/.ssh/authorized_keys /home/brian/.nx/config/authorized.crt
 RUN chown -R brian:brian /home/brian/.nx
