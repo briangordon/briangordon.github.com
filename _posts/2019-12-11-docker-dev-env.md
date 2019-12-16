@@ -5,7 +5,7 @@ tags: [programming, docker]
 published: true
 ---
 
-Since I left my last job I haven't had a real portable development environment. It's pretty expensive to get sufficient power for snappy Scala compilation in a laptop form factor. When I saw that Lenovo had a Black Friday sale on an extraordinarily inexpensive laptop ($129!) with good build quality but anemic specs, I had an idea: why not use this cheap laptop as a thin client for a remote development environment? I have a decent server at home with plenty of power that can do all of the heavy lifting, which should mean that the laptop gets great performance without sacrificing on cost, weight, or battery life.
+Since I left my last job I haven't had a real portable development environment. It's pretty expensive to get decent performance for Scala compilation in a laptop form factor. When I saw that Lenovo had a Black Friday sale on an extraordinarily inexpensive laptop ($129!) with good build quality but anemic specs, I had an idea: why not use this cheap laptop as a thin client for a remote development environment? I have [a relatively snappy little server](https://gist.github.com/briangordon/24edc590a6f030a07a39bb7dc3f1e1d2) at home that can do all of the heavy lifting, which should mean that the laptop gets great performance without sacrificing on cost, weight, or battery life.
 
 My Linux server somewhat conservatively runs headless Debian, which is great for a server but not really ideal for my development workflow. So the plan will be to use Docker to run Arch in a container. I'll expose the container to the outside internet so that I can access it wherever I am in the world.
 
@@ -148,4 +148,4 @@ This section is a collection of pointers for Docker beginners to help with commo
 - To delete the (stopped) container, run `docker rm dev`. To delete the image, run `docker image rm dev`. To delete unused volumes, run `docker volume prune`.
 - Because we called `docker run` with the `--restart always` argument, our container should automatically come back up if it crashes or if the host reboots.
 
-![NoMachine screenshot](/images/nomachine.png)
+[![NoMachine screenshot](/images/nomachine-vs-14w-thumb.png)](/images/nomachine-vs-14w.png)
