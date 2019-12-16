@@ -34,6 +34,7 @@ RUN pacman -S --noconfirm --needed lxde gvfs pulseaudio --ignore lxdm
 
 # Create our user *before* mounting the home directory as a volume so that it won't be owned by root.
 RUN useradd --create-home --user-group --groups wheel --shell /bin/bash $username
+RUN echo '%wheel ALL=(ALL) NOPASSWD: ALL' > /etc/sudoers.d/wheel
 
 # Enable OpenSSH daemon with password-based authentication disabled. You can remove some of this if you don't have authorized_keys set up.
 RUN systemctl enable sshd
@@ -99,10 +100,10 @@ nano Dockerfile
 docker build -t dev --build-arg username=brian .
 ```
 
-Now create a new container and start it up in the background. We need [a couple of extra options](https://developers.redhat.com/blog/2016/09/13/running-systemd-in-a-non-privileged-container/) so that systemd can run as PID1 in a non-privileged container. The SYS_PTRACE capability seems to be needed for NoMachine to start up its embedded X server.
+Now create a new container and start it up in the background. We need [a couple of extra options](https://developers.redhat.com/blog/2016/09/13/running-systemd-in-a-non-privileged-container/) so that systemd can run as PID1 in a non-privileged container. The `SYS_PTRACE` capability seems to be needed for NoMachine to start up its embedded X server. `SYS_RESOURCE` is useful and relatively harmless, and stops sudo from complaining at us when it tries to call `setrlimit`.
 
 ```sh
-docker run -d -p 2222:22 -p 4000:4000 --name dev --hostname dev --cap-add=SYS_PTRACE --restart always --tmpfs /tmp --tmpfs /run -v /sys/fs/cgroup:/sys/fs/cgroup:ro dev
+docker run -d -p 2222:22 -p 4000:4000 --name dev --hostname dev --cap-add=SYS_PTRACE --cap-add=SYS_RESOURCE --restart always --tmpfs /tmp --tmpfs /run -v /sys/fs/cgroup:/sys/fs/cgroup:ro dev
 ```
 
 For now we can start a new root shell in the container so that we can set a password for our user. It's a good idea to do this interactively so that your password isn't recorded into `docker history`.
@@ -132,7 +133,7 @@ ufw limit log proto tcp from 192.168.0.0/16 to 0.0.0.0/0 port 2222
 <br />
 ### Operation
 
-In order to remote into your server, download and install the freeware [NoMachine Enterprise Client](https://www.nomachine.com/product&p=NoMachine%20Enterprise%20Client). Create a new connection, selecting the NX protocol (the freeware version of the server software doesn't support SSH) and entering the relevant hostname or IP address. You can select "Use UDP communication for multimedia data."
+In order to remote into your server, download and install the freeware [NoMachine Enterprise Client](https://www.nomachine.com/product&p=NoMachine%20Enterprise%20Client). Create a new connection, selecting the NX protocol (the freeware version of the server software doesn't support SSH) and entering the relevant hostname or IP address. You can select "Use UDP communication for multimedia data" if you change the port to 4000.
 
 The Dockerfile copies your server's `.ssh/authorized_keys` into `~/.nx/config/authorized.crt` but I was unable to get key-based authentication to work (connections fail if `EnableNXClientAuthentication` is `1` and [this guy's fix](https://forums.nomachine.com/topic/nxclientauthentication-fails) doesn't work for me) so password-based authentication is left enabled. Use a strong password if you expose this to the internet!
 
