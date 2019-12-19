@@ -146,7 +146,7 @@ The Dockerfile copies your server's `.ssh/authorized_keys` into `~/.nx/config/au
 
 This section is a collection of pointers for Docker beginners to help with common tasks that you might want to perform with your container.
 
-- If you want to pull files out of your container's home directory, navigate to `/var/lib/docker/volumes/` on the host. Do not try to insert files *into* the container this way. You should use SCP/SFTP or mount a network share into your container for inbound file transfers.
+- If you want to pull files out of your container's home directory, navigate to `/var/lib/docker/volumes/` on the host. Do not try to insert files *into* the container this way. For inbound file transfers, you should use the send/receive functionality built into NoMachine, use SCP/SFTP, or mount a network share into your container.
 - With the Dockerfile above, any changes outside your user's home directory will be persisted to the overlay filesystem, which can't be easily accessed outside of Docker.
 - To stop your container, run `docker stop dev`. To start it again, run `docker start dev`. Don't call `docker run` again as it will create a brand new container.
 - To delete the (stopped) container, run `docker rm dev`. To delete the image, run `docker image rm dev`. To delete unused volumes, run `docker volume prune`.
