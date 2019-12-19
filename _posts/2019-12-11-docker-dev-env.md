@@ -28,9 +28,13 @@ FROM archlinux/base
 ARG username=brian
 WORKDIR /root
 
+# The default mirrors are sometimes not synchronized. Updating the mirrorlist first is necessary for the Dockerfile to reliably run without failures.
+RUN pacman -Syu --noconfirm
+RUN pacman -S --noconfirm reflector
+RUN reflector --verbose --fastest 5 --age 6 --save /etc/pacman.d/mirrorlist
 RUN pacman -Syu --noconfirm
 RUN pacman -S --noconfirm --needed man man-pages nano openssh iputils procps-ng base-devel git systemd-sysvcompat
-RUN pacman -S --noconfirm --needed lxde gvfs pulseaudio --ignore lxdm
+RUN pacman -S --noconfirm --needed xfce4 xfce4-goodies pulseaudio ttf-roboto ttf-ubuntu-font-family ttf-dejavu
 
 # Create our user *before* mounting the home directory as a volume so that it won't be owned by root.
 RUN useradd --create-home --user-group --groups wheel --shell /bin/bash $username
@@ -55,13 +59,15 @@ RUN sed -i 's/exit $E_ROOT/#exit $E_ROOT/g' /usr/bin/makepkg
 
 # Build/install NoMachine. The vanilla installer doesn't support Arch but there's an AUR package which patches the Fedora support to work.
 # The installer script checks /proc/1 to see if we're running systemd so if we want it to install the `.service` file we have to rename the shell.
+# You can remove the DefaultDesktopCommand line if NoMachine autodetects your desktop environment. See https://www.nomachine.com/AR10K00725
 RUN git clone https://aur.archlinux.org/nomachine.git
 WORKDIR nomachine
 RUN makepkg -sric --noconfirm
 RUN cp /bin/bash systemd-sh
-RUN sed -i s_#!/bin/bash_#!/root/nomachine/systemd-sh_ /usr/NX/scripts/setup/nxserver
+RUN sed -i 's_#!/bin/bash_#!/root/nomachine/systemd-sh_' /usr/NX/scripts/setup/nxserver
 RUN /usr/NX/scripts/setup/nxserver --enableservices
-RUN sed -i s_#!/root/nomachine/systemd-sh_#!/bin/bash_ /usr/NX/scripts/setup/nxserver
+RUN sed -i 's_#!/root/nomachine/systemd-sh_#!/bin/bash_' /usr/NX/scripts/setup/nxserver
+RUN sed -i 's_DefaultDesktopCommand "/etc/X11/Xsession default"_DefaultDesktopCommand "/usr/bin/dbus-launch /usr/bin/startxfce4"_' /usr/NX/etc/node.cfg
 RUN sed -i 's/EnableUPnP NX/#EnableUPnP NX/' /usr/NX/etc/server.cfg
 RUN echo "UDPPort 4000" >> /usr/NX/etc/server.cfg
 RUN echo "CreateDisplay 1" >> /usr/NX/etc/server.cfg
@@ -113,8 +119,6 @@ docker exec -it dev bash
 passwd brian
 exit
 ```
-
-I'm using LXDE, [which is autodetected](https://www.nomachine.com/AR10K00725) by NoMachine. If you're using a different desktop environment, this would be a good time to change `DefaultDesktopCommand` in `/usr/NX/etc/node.cfg` (e.g. for XFCE it should be `"/usr/bin/startxfce4"`).
 
 I had one additional step, which was to update my firewall configuration on the host server to permit IPv4 packets to pass through to the container via the Docker bridge network device.
 
