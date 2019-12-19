@@ -67,7 +67,7 @@ RUN cp /bin/bash systemd-sh
 RUN sed -i 's_#!/bin/bash_#!/root/nomachine/systemd-sh_' /usr/NX/scripts/setup/nxserver
 RUN /usr/NX/scripts/setup/nxserver --enableservices
 RUN sed -i 's_#!/root/nomachine/systemd-sh_#!/bin/bash_' /usr/NX/scripts/setup/nxserver
-RUN sed -i 's_DefaultDesktopCommand "/etc/X11/Xsession default"_DefaultDesktopCommand "/usr/bin/dbus-launch /usr/bin/startxfce4"_' /usr/NX/etc/node.cfg
+RUN sed -i 's_DefaultDesktopCommand /usr/bin/startxfce4_DefaultDesktopCommand "/usr/bin/dbus-launch /usr/bin/startxfce4"_' /usr/NX/etc/node.cfg
 RUN sed -i 's/EnableUPnP NX/#EnableUPnP NX/' /usr/NX/etc/server.cfg
 RUN echo "UDPPort 4000" >> /usr/NX/etc/server.cfg
 RUN echo "CreateDisplay 1" >> /usr/NX/etc/server.cfg
