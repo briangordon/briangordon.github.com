@@ -34,7 +34,7 @@ RUN pacman -S --noconfirm reflector
 RUN reflector --verbose --fastest 5 --age 6 --save /etc/pacman.d/mirrorlist
 RUN pacman -Syu --noconfirm
 RUN pacman -S --noconfirm --needed man man-pages nano openssh iputils procps-ng base-devel git systemd-sysvcompat
-RUN pacman -S --noconfirm --needed xfce4 xfce4-goodies pulseaudio ttf-roboto ttf-ubuntu-font-family ttf-dejavu
+RUN pacman -S --noconfirm --needed xfce4 xfce4-goodies gvfs pulseaudio ttf-roboto ttf-ubuntu-font-family ttf-dejavu
 
 # Create our user *before* mounting the home directory as a volume so that it won't be owned by root.
 RUN useradd --create-home --user-group --groups wheel --shell /bin/bash $username
