@@ -36,6 +36,9 @@ RUN pacman -Syu --noconfirm
 RUN pacman -S --noconfirm --needed man man-pages nano openssh iputils procps-ng base-devel git systemd-sysvcompat
 RUN pacman -S --noconfirm --needed xfce4 xfce4-goodies gvfs pulseaudio ttf-roboto ttf-ubuntu-font-family ttf-dejavu
 
+# Set the system time zone.
+RUN ln -sf /usr/share/zoneinfo/America/Los_Angeles /etc/localtime
+
 # Create our user *before* mounting the home directory as a volume so that it won't be owned by root.
 RUN useradd --create-home --user-group --groups wheel --shell /bin/bash $username
 RUN echo '%wheel ALL=(ALL) NOPASSWD: ALL' > /etc/sudoers.d/wheel
