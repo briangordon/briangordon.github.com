@@ -134,6 +134,16 @@ ufw app update nxserver
 ufw allow from 192.168.0.0/16 to 0.0.0.0/0 app nxserver
 ufw limit log proto tcp from 192.168.0.0/16 to 0.0.0.0/0 port 2222
 ```
+
+If you're a Chrome user, running it in a container is a bit tricky because it uses user namespaces for sandboxing. This feature is disabled by default in Debian for [security reasons](https://lwn.net/Articles/673597/) so I had to run this in order to enable it on the host kernel (note that this specific sysctl knob will not work in other distros):
+
+```sh
+echo 'kernel.unprivileged_userns_clone=1' > /etc/sysctl.d/00-local-userns.conf
+service procps restart
+```
+
+The other thing you'll need in order to run Chrome in your container is [Jess Frazelle's seccomp profile](https://raw.githubusercontent.com/jfrazelle/dotfiles/master/etc/docker/seccomp/chrome.json). Add [`--security-opt seccomp=/path/to/chrome.json`](https://docs.docker.com/engine/security/seccomp/) to your `docker run` command in order to apply it to your container.
+
 <br />
 ### Operation
 
