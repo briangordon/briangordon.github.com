@@ -109,10 +109,10 @@ nano Dockerfile
 docker build -t dev --build-arg username=brian .
 ```
 
-Now create a new container and start it up in the background. We need [a couple of extra options](https://developers.redhat.com/blog/2016/09/13/running-systemd-in-a-non-privileged-container/) so that systemd can run as PID1 in a non-privileged container. The `SYS_PTRACE` capability seems to be needed for NoMachine to start up its embedded X server. `SYS_RESOURCE` is useful and relatively harmless, and stops sudo from complaining at us when it tries to call `setrlimit`.
+Now create a new container and start it up in the background. We need [a couple of extra options](https://developers.redhat.com/blog/2016/09/13/running-systemd-in-a-non-privileged-container/) so that systemd can run as PID1 in a non-privileged container. The `SYS_PTRACE` capability seems to be needed for NoMachine to start up its embedded X server. `SYS_RESOURCE` is useful and relatively harmless, and stops sudo from complaining at us when it tries to call `setrlimit`. Setting `--shm-size` is required to prevent Chrome from running out of memory, because it makes use of `/dev/shm` which is only 64MB by default.
 
 ```sh
-docker run -d -p 2222:22 -p 4000:4000 --name dev --hostname dev --cap-add=SYS_PTRACE --cap-add=SYS_RESOURCE --restart always --tmpfs /tmp --tmpfs /run -v /sys/fs/cgroup:/sys/fs/cgroup:ro dev
+docker run -d -p 2222:22 -p 4000:4000 --name dev --hostname dev --cap-add=SYS_PTRACE --cap-add=SYS_RESOURCE --shm-size=1g --restart always --tmpfs /tmp --tmpfs /run -v /sys/fs/cgroup:/sys/fs/cgroup:ro dev
 ```
 
 For now we can start a new root shell in the container so that we can set a password for our user. It's a good idea to do this interactively so that your password isn't recorded into `docker history`.
