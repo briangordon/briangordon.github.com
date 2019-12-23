@@ -112,7 +112,7 @@ docker build -t dev --build-arg username=brian .
 Now create a new container and start it up in the background. We need [a couple of extra options](https://developers.redhat.com/blog/2016/09/13/running-systemd-in-a-non-privileged-container/) so that systemd can run as PID1 in a non-privileged container. The `SYS_PTRACE` capability seems to be needed for NoMachine to start up its embedded X server. `SYS_RESOURCE` is useful and relatively harmless, and stops sudo from complaining at us when it tries to call `setrlimit`. Setting `--shm-size` is required to prevent Chrome from running out of memory, because it makes use of `/dev/shm` which is only 64MB by default.
 
 ```sh
-docker run -d -p 2222:22 -p 4000:4000 --name dev --hostname dev --cap-add=SYS_PTRACE --cap-add=SYS_RESOURCE --shm-size=1g --restart always --tmpfs /tmp --tmpfs /run -v /sys/fs/cgroup:/sys/fs/cgroup:ro dev
+docker run -d -p 2222:22 -p 4000:4000 --name dev --hostname dev --cap-add=SYS_PTRACE --cap-add=SYS_RESOURCE --shm-size=1g --restart always --tmpfs /tmp:exec --tmpfs /run -v /sys/fs/cgroup:/sys/fs/cgroup:ro dev
 ```
 
 For now we can start a new root shell in the container so that we can set a password for our user. It's a good idea to do this interactively so that your password isn't recorded into `docker history`.
@@ -164,5 +164,6 @@ This section is a collection of pointers for Docker beginners to help with commo
 - To stop your container, run `docker stop dev`. To start it again, run `docker start dev`. Don't call `docker run` again as it will create a brand new container.
 - To delete the (stopped) container, run `docker rm dev`. To delete the image, run `docker image rm dev`. To delete unused volumes, run `docker volume prune`.
 - Because we called `docker run` with the `--restart always` argument, our container should automatically come back up if it crashes or if the host reboots.
+- If you need to change the `docker run` options and you don't want to lose all of your data, you can `docker commit` to build a new image from the current state of the container. You can then `docker run` the new image with your updated options.
 
 [![NoMachine screenshot](/images/nomachine-vs-14w-thumb.png)](/images/nomachine-vs-14w.png)
