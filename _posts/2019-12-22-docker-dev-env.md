@@ -29,12 +29,12 @@ ARG username=brian
 WORKDIR /root
 
 # The default mirrors are sometimes not synchronized. Updating the mirrorlist first is necessary for the Dockerfile to reliably run without failures.
-RUN pacman -Syu --noconfirm
-RUN pacman -S --noconfirm reflector
-RUN reflector --verbose --fastest 5 --age 6 --save /etc/pacman.d/mirrorlist
-RUN pacman -Syu --noconfirm
-RUN pacman -S --noconfirm --needed man man-pages nano openssh iputils procps-ng base-devel git systemd-sysvcompat
-RUN pacman -S --noconfirm --needed xfce4 xfce4-goodies gvfs pulseaudio ttf-roboto ttf-ubuntu-font-family ttf-dejavu
+RUN pacman -Syu --noconfirm \
+ && pacman -S --noconfirm reflector \
+ && reflector --verbose --fastest 5 --age 6 --save /etc/pacman.d/mirrorlist \
+ && pacman -Syu --noconfirm \
+ && pacman -S --noconfirm --needed man man-pages nano openssh iputils procps-ng base-devel git systemd-sysvcompat \
+ && pacman -S --noconfirm --needed xfce4 xfce4-goodies gvfs pulseaudio ttf-roboto ttf-ubuntu-font-family ttf-dejavu
 
 # Set the system time zone.
 RUN ln -sf /usr/share/zoneinfo/America/Los_Angeles /etc/localtime
