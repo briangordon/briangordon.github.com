@@ -145,7 +145,7 @@ echo 'kernel.unprivileged_userns_clone=1' > /etc/sysctl.d/00-local-userns.conf
 service procps restart
 ```
 
-The other thing you'll need in order to run Chrome in your container is [Jess Frazelle's seccomp profile](https://raw.githubusercontent.com/jfrazelle/dotfiles/master/etc/docker/seccomp/chrome.json). Add [`--security-opt seccomp=/path/to/chrome.json`](https://docs.docker.com/engine/security/seccomp/) to your `docker run` command in order to apply it to your container.
+The other thing you'll need in order to run Chrome in your container is [Jess Frazelle's seccomp profile](https://raw.githubusercontent.com/jfrazelle/dotfiles/master/etc/docker/seccomp/chrome.json). Add [`--security-opt seccomp=/path/to/chrome.json`](https://docs.docker.com/engine/security/seccomp/) to your `docker run` command in order to apply it to your container. I added the `statx` system call to her whitelist because it's [used by Qt](https://stackoverflow.com/questions/51195528/rcc-error-in-resource-qrc-cannot-find-file-png).
 
 <br />
 ### Operation
