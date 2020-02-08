@@ -1,5 +1,5 @@
 safe: false
-paginate: 5
+paginate: 7
 permalink: /:year/:month/:title.html
 markdown: kramdown
 kramdown:
