@@ -127,7 +127,7 @@ I had one additional step, which was to update my firewall configuration on the 
 
 ```sh
 sudo -i
-cat > /etc/ufw/applications.d/nxserver <<-ENDOFMESSAGE
+cat > /etc/ufw/applications.d/nxserver <<-"ENDOFMESSAGE"
 	[nxserver]
 	title=NX protocol server
 	description=Part of NoMachine, a remote desktop solution.
